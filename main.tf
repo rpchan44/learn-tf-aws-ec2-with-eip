@@ -101,7 +101,7 @@ resource "aws_instance" "RealServer-01" {
     network_interface_id = aws_network_interface.netif.id
   }
   user_data = <<-EOF
-              #!/bin/sh
+              #!/bin/bash
               sudo apt-get update -y
               sudo apt-get install apache2
               sudo systemctl enable apache2
