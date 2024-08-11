@@ -1,3 +1,14 @@
+# 1. Create VPC
+# 2. Create Internet Gateway
+# 3. Create Custom Route Table
+# 4. Create a Subnet
+# 5. Associate subnet with Route Table
+# 6. Create Security Group to allow TCP port 22,80 and ICMP echo-req
+# 7. Create a network interface with an ip in the subnet
+# 8. Assign an elastic IP to the network interface
+# 9. Launch an instance with ubuntu ami and user_date should execute by cloud-init
+# TODO : introduce variables from this main module
+
 provider "aws" {
   region = "ap-southeast-1" # Singapore
 }
