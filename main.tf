@@ -104,10 +104,10 @@ resource "aws_eip" "first" {
 }
 
 resource "aws_instance" "RealServer-01" {
-  ami               = "ami-060e277c0d4cce553"
+  ami               = var.ubuntu-ami
   instance_type     = var.instance_type
-  key_name          = "Development"
-  availability_zone = "ap-southeast-1a"
+  key_name          = var.devel_ssh_key_pairs
+  availability_zone = var.ami_availability_zone
   network_interface {
     device_index         = 0
     network_interface_id = aws_network_interface.netif.id
