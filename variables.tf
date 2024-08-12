@@ -4,7 +4,7 @@ variable "region" {
   default     = "ap-southeast-1"
 }
 variable "vpc_cidr_block" {
-  description = "VPC cidr block /16"
+  description = "VPC subnet block /16"
   type        = string
   default     = "10.0.0.0/16"
 }
