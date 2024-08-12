@@ -119,8 +119,6 @@ resource "aws_instance" "RealServer-01" {
               sudo apt-get install s3fs -y
               sudo systemctl enable apache2
               sudo systemctl start apache2
-              
-              
               EOF
 
   tags = {
