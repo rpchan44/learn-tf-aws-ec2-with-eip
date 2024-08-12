@@ -3,6 +3,11 @@ variable "region" {
   type        = string
   default     = "ap-southeast-1"
 }
+variable "any_network" {
+  description = "0.0.0.0/0 global internet"
+  type        = string
+  default     = "0.0.0.0/0"
+}
 variable "vpc_cidr_block" {
   description = "VPC subnet block /16"
   type        = string
