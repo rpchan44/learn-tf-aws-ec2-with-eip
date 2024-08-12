@@ -27,7 +27,7 @@ resource "aws_internet_gateway" "nexthop" {
 resource "aws_route_table" "development_route_table" {
   vpc_id = aws_vpc.Development.id
   route {
-    cidr_block = "0.0.0.0/0"
+    cidr_block = var.vpc_cidr_block
     gateway_id = aws_internet_gateway.nexthop.id
   }
 
@@ -38,7 +38,7 @@ resource "aws_route_table" "development_route_table" {
 
 resource "aws_subnet" "apps01-subnet" {
   vpc_id            = aws_vpc.Development.id
-  cidr_block        = "10.0.1.0/24"
+  cidr_block        = var.apps01_subnet_cidr_block
   availability_zone = "ap-southeast-1a"
   tags = {
     name = "apps01-subnet"
@@ -92,14 +92,14 @@ resource "aws_security_group" "allow_basic_services" {
 
 resource "aws_network_interface" "netif" {
   subnet_id       = aws_subnet.apps01-subnet.id
-  private_ips     = ["10.0.1.5"]
+  private_ips     = [var.apps01_devel_private_ip]
   security_groups = [aws_security_group.allow_basic_services.id]
 }
 
 resource "aws_eip" "first" {
   instance                  = aws_instance.RealServer-01.id
   network_interface         = aws_network_interface.netif.id
-  associate_with_private_ip = "10.0.1.5"
+  associate_with_private_ip = var.apps01_devel_private_ip
   depends_on                = [aws_instance.RealServer-01, aws_internet_gateway.nexthop]
 }
 

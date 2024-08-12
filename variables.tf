@@ -3,6 +3,21 @@ variable "region" {
   type        = string
   default     = "ap-southeast-1"
 }
+variable "vpc_cidr_block" {
+  description = "VPC cidr block /16"
+  type        = string
+  default     = "10.0.0.0/16"
+}
+variable "apps01_subnet_cidr_block" {
+  description = "Apps01 subnet /24"
+  type        = string
+  default     = "10.0.1.0/24"
+}
+variable "apps01_devel_private_ip" {
+  description = "Private ip"
+  type        = string
+  default     = "10.0.1.5"
+}
 variable "ubuntu-ami" {
   description = "Ubuntu AMI for ap-southeast-1a"
   type        = string
