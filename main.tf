@@ -10,7 +10,7 @@
 # TODO : introduce variables from this main module
 
 provider "aws" {
-  region = "ap-southeast-1" # Singapore
+  region = var.region # Singapore
 }
 
 resource "aws_vpc" "Development" {
@@ -104,7 +104,7 @@ resource "aws_eip" "first" {
 
 resource "aws_instance" "RealServer-01" {
   ami               = "ami-060e277c0d4cce553"
-  instance_type     = "t2.micro"
+  instance_type     = var.instance_type
   key_name          = "Development"
   availability_zone = "ap-southeast-1a"
   network_interface {
