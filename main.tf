@@ -14,7 +14,7 @@ provider "aws" {
 }
 
 resource "aws_vpc" "Development" {
-  cidr_block = "10.0.0.0/16"
+  cidr_block = var.vpc_cidr_block
   tags = {
     name = "Development"
   }
@@ -39,7 +39,7 @@ resource "aws_route_table" "development_route_table" {
 resource "aws_subnet" "apps01-subnet" {
   vpc_id            = aws_vpc.Development.id
   cidr_block        = var.apps01_subnet_cidr_block
-  availability_zone = "ap-southeast-1a"
+  availability_zone = var.ami_availability_zone
   tags = {
     name = "apps01-subnet"
   }
@@ -118,6 +118,7 @@ resource "aws_instance" "RealServer-01" {
               sudo apt-get install apache2
               sudo systemctl enable apache2
               sudo systemctl start apache2
+              
               EOF
 
   tags = {
