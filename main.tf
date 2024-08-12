@@ -97,9 +97,10 @@ resource "aws_network_interface" "netif" {
 }
 
 resource "aws_eip" "first" {
+  instance                  = aws_instance.RealServer-01.id
   network_interface         = aws_network_interface.netif.id
   associate_with_private_ip = "10.0.1.5"
-  depends_on                = [aws_internet_gateway.nexthop]
+  depends_on                = [aws_instance.RealServer-01, aws_internet_gateway.nexthop]
 }
 
 resource "aws_instance" "RealServer-01" {
