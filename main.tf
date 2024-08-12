@@ -115,9 +115,11 @@ resource "aws_instance" "RealServer-01" {
   user_data = <<-EOF
               #!/bin/bash
               sudo apt-get update -y
-              sudo apt-get install apache2
+              sudo apt-get install apache2 -y
+              sudo apt-get install s3fs -y
               sudo systemctl enable apache2
               sudo systemctl start apache2
+              
               
               EOF
 
