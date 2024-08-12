@@ -27,7 +27,7 @@ resource "aws_internet_gateway" "nexthop" {
 resource "aws_route_table" "development_route_table" {
   vpc_id = aws_vpc.Development.id
   route {
-    cidr_block = var.vpc_cidr_block
+    cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.nexthop.id
   }
 
